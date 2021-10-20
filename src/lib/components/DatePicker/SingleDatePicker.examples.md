@@ -3,13 +3,11 @@ DatePicker examples:
 ###### SingleDatePicker
 
 ```js
-import { SingleDatePicker } from 'react-google-flight-datepicker';
+import { SingleDatePicker } from '@aavaz-ai/react-google-flight-datepicker';
 
 <div className="react-google-flight-datepicker">
   <div className="date-picker-demo">
-    <SingleDatePicker
-      singleCalendar
-    />
+    <SingleDatePicker singleCalendar />
   </div>
-</div>
+</div>;
 ```

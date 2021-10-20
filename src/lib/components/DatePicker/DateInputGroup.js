@@ -6,7 +6,6 @@ import DateInput from './DateInput';
 import CalendarIcon from '../../assets/svg/calendar.svg';
 
 const DateInputGroup = ({
-  showCalendarIcon,
   inputFocus,
   handleClickDateInput,
   fromDate,
@@ -21,15 +20,8 @@ const DateInputGroup = ({
   onFocus,
   nonFocusable,
   dateInputSeperator,
+  customInputLabel,
 }) => {
-  function handleClickFromInput() {
-    handleClickDateInput('from');
-  }
-
-  function handleClickToInput() {
-    handleClickDateInput('to');
-  }
-
   function getDateFromValue(action, value) {
     if (action === 'prev') {
       return dayjs(value).subtract(1, 'day');
@@ -49,53 +41,56 @@ const DateInputGroup = ({
   }
 
   return (
-    <div className="date-picker-input">
-      {showCalendarIcon
-        && <CalendarIcon className="icon-calendar mobile" viewBox="0 0 24 24" />}
-      <div className="date-picker-date-group">
-        <DateInput
-          handleClickDateInput={handleClickFromInput}
-          showIcon
-          tabIndex={nonFocusable ? '-1' : '0'}
-          isFocus={inputFocus === 'from'}
-          value={fromDate}
-          placeholder={startDatePlaceholder}
-          handleChangeDate={handleChangeFromDate}
-          dateFormat={dateFormat}
-          isSingle={isSingle}
-          name="START_DATE"
-          onFocus={onFocus}
-          nonFocusable={nonFocusable}
-          minDate={minDate}
-          maxDate={maxDate}
-        />
-        {!isSingle && dateInputSeperator
-          && <div className="date-input-separator">{dateInputSeperator}</div>}
-        {!isSingle
-        && (
+    <div className="date-picker-input" onClick={handleClickDateInput}>
+      {customInputLabel.trim() !== '' && (
+        <div className="custom-input-wrapper">
+          <CalendarIcon className="icon-calendar" viewBox="0 0 24 24" />
+          <div>{customInputLabel}</div>
+        </div>
+      )}
+      {customInputLabel.trim() === '' && (
+        <div className="date-picker-date-group">
           <DateInput
-            handleClickDateInput={handleClickToInput}
-            tabIndex="0"
-            isFocus={inputFocus === 'to'}
-            value={toDate}
-            placeholder={endDatePlaceholder}
-            handleChangeDate={handleChangeToDate}
+            showIcon
+            tabIndex={nonFocusable ? '-1' : '0'}
+            isFocus={inputFocus === 'from'}
+            value={fromDate}
+            placeholder={startDatePlaceholder}
+            handleChangeDate={handleChangeFromDate}
             dateFormat={dateFormat}
-            name="END_DATE"
+            isSingle={isSingle}
+            name="START_DATE"
+            onFocus={onFocus}
             nonFocusable={nonFocusable}
             minDate={minDate}
             maxDate={maxDate}
-            fromDate={fromDate}
           />
-        )}
-      </div>
+          {!isSingle && dateInputSeperator && (
+            <div className="date-input-separator">{dateInputSeperator}</div>
+          )}
+          {!isSingle && (
+            <DateInput
+              tabIndex="0"
+              isFocus={inputFocus === 'to'}
+              value={toDate}
+              placeholder={endDatePlaceholder}
+              handleChangeDate={handleChangeToDate}
+              dateFormat={dateFormat}
+              name="END_DATE"
+              nonFocusable={nonFocusable}
+              minDate={minDate}
+              maxDate={maxDate}
+              fromDate={fromDate}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };
 
 DateInputGroup.propTypes = {
   handleClickDateInput: PropTypes.func,
-  showCalendarIcon: PropTypes.bool,
   inputFocus: PropTypes.string,
   fromDate: PropTypes.instanceOf(Date),
   toDate: PropTypes.instanceOf(Date),
@@ -109,11 +104,11 @@ DateInputGroup.propTypes = {
   onFocus: PropTypes.func,
   nonFocusable: PropTypes.bool,
   dateInputSeperator: PropTypes.node,
+  customInputLabel: PropTypes.string,
 };
 
 DateInputGroup.defaultProps = {
   handleClickDateInput: () => {},
-  showCalendarIcon: false,
   inputFocus: null,
   fromDate: null,
   toDate: null,
@@ -127,6 +122,7 @@ DateInputGroup.defaultProps = {
   onFocus: () => {},
   nonFocusable: false,
   dateInputSeperator: null,
+  customInputLabel: '',
 };
 
 export default DateInputGroup;
