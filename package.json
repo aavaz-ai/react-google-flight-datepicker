@@ -1,7 +1,7 @@
 {
-  "name": "@aavaz-ai/react-google-flight-datepicker-v2",
+  "name": "@aavaz-ai/react-google-flight-datepicker",
   "repository": "https://github.com/aavaz-ai/react-google-flight-datepicker",
-  "version": "0.1.23",
+  "version": "0.1.17",
   "description": "Customised implementation for Google Flight date-picker",
   "author": "David Tran, Leo Phan",
   "license": "MIT",
