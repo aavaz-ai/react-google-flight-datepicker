@@ -22,7 +22,7 @@
     "lint": "esw --ext .jsx --ext .js --color",
     "lint:fix": "yarn lint --fix",
     "prerelease": "yarn lint:fix && yarn test:coverage && yarn build",
-    "prepare": "yarn build",
+    "prepack": "yarn lint:fix && yarn test:coverage && yarn build",
     "release": "npm publish",
     "predeploy": "yarn styleguide:build",
     "deploy": "gh-pages -d styleguide"
