@@ -1,7 +1,7 @@
 {
-  "name": "@aavaz-ai/react-google-flight-datepicker",
+  "name": "@aavaz-ai/react-google-flight-datepicker-v2",
   "repository": "https://github.com/aavaz-ai/react-google-flight-datepicker",
-  "version": "0.1.20",
+  "version": "0.1.22",
   "description": "Customised implementation for Google Flight date-picker",
   "author": "David Tran, Leo Phan",
   "license": "MIT",
@@ -22,7 +22,6 @@
     "lint": "esw --ext .jsx --ext .js --color",
     "lint:fix": "yarn lint --fix",
     "prerelease": "yarn lint:fix && yarn test:coverage && yarn build",
-    "prepack": "yarn lint:fix && yarn test:coverage && yarn build",
     "release": "npm publish",
     "predeploy": "yarn styleguide:build",
     "deploy": "gh-pages -d styleguide"

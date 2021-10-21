@@ -60,7 +60,7 @@ const Dialog = ({
       setTimeout(() => {
         if (containerRef.current && containerRef.current.getElementById) {
           const startDateInput = containerRef.current.getElementById(
-            'start-date-input-button'
+            'start-date-input-button',
           );
           if (startDateInput) {
             startDateInput.focus();

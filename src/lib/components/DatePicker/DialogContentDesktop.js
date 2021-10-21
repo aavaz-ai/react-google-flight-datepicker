@@ -38,15 +38,15 @@ const DialogContentDesktop = ({
     const futureMonth = dayjs(date).add(2, 'month');
 
     if (singleCalendar) {
-        return [prevMonth, focusDate, nextMonth];
-    } else {
-        return [prevMonth, focusDate, nextMonth, futureMonth];
+      return [prevMonth, focusDate, nextMonth];
     }
+
+    return [prevMonth, focusDate, nextMonth, futureMonth];
   }
 
   useEffect(() => {
     if (containerRef.current) {
-      const style = window.getComputedStyle(containerRef.current)
+      const style = window.getComputedStyle(containerRef.current);
       const _translateAmount = singleCalendar ? containerRef.current.offsetWidth + parseInt(style.marginLeft) - 8 : containerRef.current.offsetWidth / 2;
       setWrapperWidth(_translateAmount);
     }
@@ -270,9 +270,13 @@ const DialogContentDesktop = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div className={cx('calendar-wrapper', {
+    <div
+      className={cx('calendar-wrapper', {
         single: singleCalendar,
-    })} ref={containerRef} onKeyDown={onKeyDown}>
+      })}
+      ref={containerRef}
+      onKeyDown={onKeyDown}
+    >
       <div
         className={cx('calendar-content', {
           isAnimating: translateAmount !== 0,
@@ -323,7 +327,7 @@ DialogContentDesktop.propTypes = {
   complsOpen: PropTypes.bool,
   dateChanged: PropTypes.instanceOf(Date),
   highlightToday: PropTypes.bool,
-  singleCalendar: PropTypes.bool
+  singleCalendar: PropTypes.bool,
 };
 
 DialogContentDesktop.defaultProps = {

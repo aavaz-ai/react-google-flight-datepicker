@@ -1,5 +1,7 @@
 /* eslint-disable indent */
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, {
+ useState, useRef, useEffect, useLayoutEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import dayjs from 'dayjs';
@@ -66,9 +68,9 @@ const RangeDatePicker = ({
 
   function handleDocumentClick(e) {
     if (
-      containerRef.current &&
-      containerRef.current.contains(e.target) === false &&
-      window.innerWidth >= 768
+      containerRef.current
+      && containerRef.current.contains(e.target) === false
+      && window.innerWidth >= 768
     ) {
       setComplsOpen(false);
     }
@@ -131,8 +133,7 @@ const RangeDatePicker = ({
 
   useEffect(() => {
     if (isFirstTime) {
-      const input =
-        inputFocus === 'from'
+      const input = inputFocus === 'from'
           ? 'Start Date'
           : inputFocus === 'to'
           ? 'End Date'
@@ -158,8 +159,8 @@ const RangeDatePicker = ({
   function onSelectDate(date) {
     if (inputFocus) {
       if (
-        inputFocus === 'from' ||
-        (fromDate && date.isBefore(fromDate, 'date'))
+        inputFocus === 'from'
+        || (fromDate && date.isBefore(fromDate, 'date'))
       ) {
         updateFromDate(date, true);
         if (toDate && date.isAfter(toDate, 'date')) {
@@ -197,8 +198,8 @@ const RangeDatePicker = ({
 
   function handleChangeDate(value, input) {
     if (
-      (minDate && dayjs(minDate).isAfter(value, 'date')) ||
-      (maxDate && dayjs(maxDate).isBefore(value, 'date'))
+      (minDate && dayjs(minDate).isAfter(value, 'date'))
+      || (maxDate && dayjs(maxDate).isBefore(value, 'date'))
     ) {
       return;
     }
@@ -228,7 +229,7 @@ const RangeDatePicker = ({
           {
             disabled,
           },
-          { 'custom-input-label': customInputLabel.trim() !== '' }
+          { 'custom-input-label': customInputLabel.trim() !== '' },
         )}
         ref={containerRef}
       >

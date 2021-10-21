@@ -53,6 +53,7 @@ const MonthCalendar = ({
 
   function generateWeekDay() {
     const arrWeekDay = getWeekDay(startWeekDay, weekDayFormat);
+
     return arrWeekDay.map((day, index) => (
       <div className="weekday" key={index}>
         {day}
@@ -65,7 +66,7 @@ const MonthCalendar = ({
       className={cx('month-calendar', {
         isAnimating,
         hidden,
-          single: singleCalendar
+        single: singleCalendar,
       })}
       data-month-index={month + 1}
     >

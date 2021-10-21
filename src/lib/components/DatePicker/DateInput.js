@@ -36,8 +36,8 @@ const DateInput = ({
       setFormattedDate(text);
 
       if (
-        (minDate && dayjs(minDate).add(1, 'day').isAfter(value, 'date')) ||
-        (name === 'END_DATE' && value.isBefore(fromDate.add(1, 'day'), 'date'))
+        (minDate && dayjs(minDate).add(1, 'day').isAfter(value, 'date'))
+        || (name === 'END_DATE' && value.isBefore(fromDate.add(1, 'day'), 'date'))
       ) {
         setDisablePrev(true);
       } else {
@@ -45,8 +45,8 @@ const DateInput = ({
       }
 
       if (
-        maxDate &&
-        dayjs(maxDate).subtract(1, 'day').isBefore(value, 'date')
+        maxDate
+        && dayjs(maxDate).subtract(1, 'day').isBefore(value, 'date')
       ) {
         setDisableNext(true);
       } else {

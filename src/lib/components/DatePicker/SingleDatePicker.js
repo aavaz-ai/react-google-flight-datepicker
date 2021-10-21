@@ -206,7 +206,7 @@ SingleDatePicker.propTypes = {
   highlightToday: PropTypes.bool,
   isOpen: PropTypes.bool,
   onCloseCalendar: PropTypes.func,
-  singleCalendar: PropTypes.bool
+  singleCalendar: PropTypes.bool,
 };
 
 SingleDatePicker.defaultProps = {
