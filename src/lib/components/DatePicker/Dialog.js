@@ -40,7 +40,6 @@ const Dialog = ({
 }) => {
   const [hideAnimation, setHideAnimation] = useState(false);
   const [dateChanged, setDateChanged] = useState();
-  const containerRef = useRef();
 
   function onChangeDate(date, value) {
     setDateChanged(date);
@@ -56,18 +55,6 @@ const Dialog = ({
     if (complsOpen && !hideAnimation) {
       setHideAnimation(true);
     }
-    if (complsOpen) {
-      setTimeout(() => {
-        if (containerRef.current && containerRef.current.getElementById) {
-          const startDateInput = containerRef.current.getElementById(
-            'start-date-input-button',
-          );
-          if (startDateInput) {
-            startDateInput.focus();
-          }
-        }
-      }, 50);
-    }
   }, [complsOpen]);
 
   return (
@@ -77,7 +64,6 @@ const Dialog = ({
         hide: !complsOpen && hideAnimation,
         single: singleCalendar && !isMobile,
       })}
-      ref={containerRef}
     >
       {customComponent}
       {!hideDialogHeader && (

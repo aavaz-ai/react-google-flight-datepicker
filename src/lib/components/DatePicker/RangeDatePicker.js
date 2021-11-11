@@ -1,7 +1,5 @@
 /* eslint-disable indent */
-import React, {
- useState, useRef, useEffect, useLayoutEffect,
-} from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import dayjs from 'dayjs';
@@ -47,30 +45,11 @@ const RangeDatePicker = ({
   const toDateRef = useRef();
   const [hoverDate, setHoverDate] = useState();
   const [isFirstTime, setIsFirstTime] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  function handleResize() {
-    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  }
-
-  useLayoutEffect(() => {
-    handleResize();
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize);
-
-      return () => window.removeEventListener('resize', handleResize);
-    }
-  }, []);
 
   function handleDocumentClick(e) {
     if (
-      containerRef.current
-      && containerRef.current.contains(e.target) === false
-      && window.innerWidth >= 768
+      containerRef.current &&
+      containerRef.current.contains(e.target) === false
     ) {
       setComplsOpen(false);
     }
@@ -133,7 +112,8 @@ const RangeDatePicker = ({
 
   useEffect(() => {
     if (isFirstTime) {
-      const input = inputFocus === 'from'
+      const input =
+        inputFocus === 'from'
           ? 'Start Date'
           : inputFocus === 'to'
           ? 'End Date'
@@ -151,16 +131,14 @@ const RangeDatePicker = ({
       return;
     }
 
-    if (!complsOpen) {
-      setComplsOpen(true);
-    }
+    toggleDialog();
   }
 
   function onSelectDate(date) {
     if (inputFocus) {
       if (
-        inputFocus === 'from'
-        || (fromDate && date.isBefore(fromDate, 'date'))
+        inputFocus === 'from' ||
+        (fromDate && date.isBefore(fromDate, 'date'))
       ) {
         updateFromDate(date, true);
         if (toDate && date.isAfter(toDate, 'date')) {
@@ -198,8 +176,8 @@ const RangeDatePicker = ({
 
   function handleChangeDate(value, input) {
     if (
-      (minDate && dayjs(minDate).isAfter(value, 'date'))
-      || (maxDate && dayjs(maxDate).isBefore(value, 'date'))
+      (minDate && dayjs(minDate).isAfter(value, 'date')) ||
+      (maxDate && dayjs(maxDate).isBefore(value, 'date'))
     ) {
       return;
     }
@@ -216,10 +194,6 @@ const RangeDatePicker = ({
     }
   }
 
-  function onDateInputFocus() {
-    handleClickDateInput('from');
-  }
-
   return (
     <div className="react-google-flight-datepicker">
       <div
@@ -229,7 +203,7 @@ const RangeDatePicker = ({
           {
             disabled,
           },
-          { 'custom-input-label': customInputLabel.trim() !== '' },
+          { 'custom-input-label': customInputLabel.trim() !== '' }
         )}
         ref={containerRef}
       >
@@ -243,13 +217,13 @@ const RangeDatePicker = ({
           startDatePlaceholder={startDatePlaceholder}
           endDatePlaceholder={endDatePlaceholder}
           dateFormat={dateFormat}
-          onFocus={onDateInputFocus}
+          onFocus={() => null}
           nonFocusable={complsOpen}
           dateInputSeperator={dateInputSeperator}
           inputFocus={inputFocus}
           customInputLabel={customInputLabel}
         />
-        <DialogWrapper isMobile={isMobile}>
+        <DialogWrapper isMobile={false}>
           <Dialog
             complsOpen={complsOpen}
             toggleDialog={toggleDialog}
@@ -271,7 +245,7 @@ const RangeDatePicker = ({
             weekDayFormat={weekDayFormat}
             dateFormat={dateFormat}
             monthFormat={monthFormat}
-            isMobile={isMobile}
+            isMobile={false}
             highlightToday={highlightToday}
             hideDialogHeader={hideDialogHeader}
             hideDialogFooter={hideDialogFooter}
